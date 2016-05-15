@@ -42,7 +42,8 @@ library(ggplot2)
 ```
 
 ## 2. Loading and preprocessing the data
-1. Unzip the data file activity.zip and read the data into a data frame named activity
+
+- Unzip the data file activity.zip and read the data into a data frame named activity
 
 ```r
 unzip("activity.zip")
@@ -51,7 +52,7 @@ activity <- read.csv("activity.csv")
 
 ## 3. What is mean total number of steps taken per day?
 
-1. Calculate the total number of steps taken per day ignoring the missing values
+- Calculate the total number of steps taken per day ignoring the missing values
 
 ```r
 numSteps <- activity[complete.cases(activity),] %>%
@@ -60,7 +61,7 @@ numSteps <- activity[complete.cases(activity),] %>%
         select(date, steps)
 ```
 
-2. Make a histogram of the total number of steps taken each day
+- Make a histogram of the total number of steps taken each day
 
 ```r
 hist(numSteps$steps, 
@@ -72,7 +73,7 @@ hist(numSteps$steps,
 
 ![](figure/tothist-1.png)<!-- -->
 
-3. Calculate and report the mean and median of the total number of steps taken per day
+- Calculate and report the mean and median of the total number of steps taken per day
 
 ```r
 meanSteps <- round(mean(numSteps$steps))
@@ -111,7 +112,7 @@ with(intPatternMean, plot(steps ~ interval,
 
 ## 5. Imputing missing values
 
-1. Calculate and report the total number of missing values in the dataset
+- Calculate and report the total number of missing values in the dataset
 
 ```r
 missValCount <- dim(activity[!complete.cases(activity),])[1]
@@ -122,7 +123,7 @@ cat("Total number of missing values in the dataset is : ",missValCount)
 ## Total number of missing values in the dataset is :  2304
 ```
 
-2. Create a new dataset from the original dataset but with the missing values for steps filled in with the mean of the 5-minute interval across all days rounded off
+- Create a new dataset from the original dataset but with the missing values for steps filled in with the mean of the 5-minute interval across all days rounded off
 
 ```r
 ## Duplicate the original data frame
@@ -137,7 +138,7 @@ for (i in 1:dim(intPatternMean)[1]) {
 }
 ```
 
-3. Make a histogram of the total number of steps taken each day
+- Make a histogram of the total number of steps taken each day
 
 ```r
 numSteps1 <- activity1 %>%
@@ -154,7 +155,7 @@ hist(numSteps1$steps,
 
 ![](figure/meantotal1-1.png)<!-- -->
 
-4. Calculate and report the mean and median total number of steps taken per day
+- Calculate and report the mean and median total number of steps taken per day
 
 ```r
 meanSteps1 <- round(mean(numSteps1$steps))
@@ -169,7 +170,7 @@ cat("Revised Mean and Median Values:","\nMean Steps per day   : ",meanSteps1,
 ## Median Steps per day :  10762
 ```
 
-5. After supplying missing values, the mean of the steps remain unchanged while the median changed from 10765 to 10762. Observed impact of the imputing missing values as per the above methodlogy only resulted in this very minor change in the median. 
+- After supplying missing values, the mean of the steps remain unchanged while the median changed from 10765 to 10762. Observed impact of the imputing missing values as per the above methodlogy only resulted in this very minor change in the median. 
 
 
 
